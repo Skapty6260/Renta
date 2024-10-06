@@ -1,0 +1,23 @@
+.navbar {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	width: 100vw;
+	display: flex;
+	justify-content: space-between;
+	font-size: large;
+	font-weight: 400;
+	padding: 10px 30px;
+	color: #fff;
+
+	ul {
+		list-style: none;
+		display: flex;
+		@apply space-x-4;
+	}
+}
+
+.logo {
+	font-weight: 900;
+	text-shadow: 1px 1px 1px #00000071;
+}
