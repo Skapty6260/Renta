@@ -11,6 +11,7 @@
 
 	ul:not(.firstListExtended) {
 		@apply space-x-3;
+		z-index: -100;
 	}
 
 	ul {
@@ -18,7 +19,8 @@
 		margin-top: 50px;
 		display: flex;
 
-		button {
+		button,
+		a {
 			display: flex;
 			justify-content: flex-start;
 			align-items: center;
@@ -51,7 +53,8 @@
 	@apply px-[12px] rounded-full;
 	position: absolute;
 	pointer-events: none;
-	background: rgb(19, 51, 181);
+	color: #e3e1e1db;
+	border: 1px solid #bcbcbc56;
 	left: 50%;
 	opacity: 80%;
 	transform: translateX(-50%);

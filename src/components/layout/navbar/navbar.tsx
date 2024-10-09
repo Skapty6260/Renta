@@ -35,7 +35,8 @@ export const NavbarLayout: React.FC<{
 		},
 		{
 			label: 'Продажа',
-			type: 'dropdown',
+			type: 'link',
+			url: '/sale',
 			// customStyles: 'bg-[#ff9a895a]',
 			icon: <FaMoneyBillWave />,
 			variant: variant == 'extended' ? 'main' : 'default',
@@ -56,6 +57,7 @@ export const NavbarLayout: React.FC<{
 				listClassName={
 					variant == 'extended' ? styles.firstListExtended : styles.firstList
 				}
+				isExtended={variant == 'extended'}
 				data={firstList}
 			/>
 
@@ -69,6 +71,7 @@ export const NavbarLayout: React.FC<{
 				listClassName={
 					variant == 'extended' ? styles.lastListExtended : styles.lastList
 				}
+				isExtended={variant == 'extended'}
 				data={lastList}
 			/>
 		</nav>

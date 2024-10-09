@@ -1,0 +1,19 @@
+.location {
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+	font-weight: 500;
+	color: rgba(108, 108, 108, 0.895);
+	li:not(:last-child) {
+		cursor: pointer;
+		margin-right: 5px;
+		transition: all 0.2s ease-in-out;
+		&:hover {
+			color: var(--activeColor);
+		}
+	}
+	li:last-child {
+		cursor: default;
+		margin-right: 0;
+	}
+}

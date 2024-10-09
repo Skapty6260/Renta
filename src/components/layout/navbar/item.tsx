@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { INavbarPartItem } from './list'
+import { Dispatch, SetStateAction } from 'react'
 
 const LinkItem: React.FC<{ item: INavbarPartItem }> = ({ item }) => {
 	if (!item.url) return null
@@ -12,19 +13,43 @@ const LinkItem: React.FC<{ item: INavbarPartItem }> = ({ item }) => {
 	)
 }
 
-const DropdownItem: React.FC<{ item: INavbarPartItem }> = ({ item }) => {
+const DropdownItem: React.FC<{
+	item: INavbarPartItem
+	ActivateDropdown: Dispatch<
+		SetStateAction<{
+			dropdown: string
+			status: boolean
+		}>
+	>
+	DropdownActive: boolean
+}> = ({ item, ActivateDropdown, DropdownActive }) => {
 	return (
-		<button>
+		<button
+			onClick={() =>
+				ActivateDropdown({ dropdown: item.label, status: !DropdownActive })
+			}
+			onMouseEnter={() =>
+				ActivateDropdown({ dropdown: item.label, status: false })
+			}
+			// onMouseLeave={() => ActivateDropdown(false)}
+		>
 			{item.icon && <i>{item.icon}</i>}
 			<span>{item.label}</span>
 		</button>
 	)
 }
 
-export const NavbarItem: React.FC<{ item: INavbarPartItem; index: number }> = ({
-	item,
-	index,
-}) => {
+export const NavbarItem: React.FC<{
+	item: INavbarPartItem
+	index: number
+	ActivateDropdown: Dispatch<
+		SetStateAction<{
+			dropdown: string
+			status: boolean
+		}>
+	>
+	DropdownActive: boolean
+}> = ({ item, index, ActivateDropdown, DropdownActive }) => {
 	return (
 		<li
 			key={index}
@@ -37,7 +62,11 @@ export const NavbarItem: React.FC<{ item: INavbarPartItem; index: number }> = ({
 			{item.type == 'link' ? (
 				<LinkItem item={item} />
 			) : (
-				<DropdownItem item={item} />
+				<DropdownItem
+					item={item}
+					ActivateDropdown={ActivateDropdown}
+					DropdownActive={DropdownActive}
+				/>
 			)}
 		</li>
 	)
