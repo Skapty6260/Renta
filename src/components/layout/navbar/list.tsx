@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavbarItem } from './item'
 import { Dropdown_Extended } from '@/components/ui/dropdown/extended'
 
@@ -8,8 +8,14 @@ export interface INavbarPartItem {
 	label: string
 	type: 'link' | 'dropdown'
 	url?: string
-	customStyles?: any
-	icon?: React.ReactNode
+	customStyles?: {
+		default: string
+		active?: string
+	}
+	icon?: {
+		default: React.ReactNode
+		active?: React.ReactNode
+	}
 	variant?: 'default' | 'main'
 }
 
@@ -37,11 +43,11 @@ export const NavbarPart: React.FC<IProps> = ({
 					item={item}
 					index={index}
 					ActivateDropdown={setDropdownActive}
-					DropdownActive={dropdownActive.status}
+					DropdownActive={dropdownActive}
 				/>
 			))}
 
-			{dropdownActive && isExtended ? <Dropdown_Extended /> : null}
+			{dropdownActive.status && isExtended ? <Dropdown_Extended /> : null}
 		</ul>
 	)
 }

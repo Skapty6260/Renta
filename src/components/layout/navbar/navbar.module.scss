@@ -12,6 +12,13 @@
 	ul:not(.firstListExtended) {
 		@apply space-x-3;
 		z-index: -100;
+		li {
+			transition: all 0.3s ease-in-out;
+
+			&:hover {
+				@apply text-blue-500;
+			}
+		}
 	}
 
 	ul {

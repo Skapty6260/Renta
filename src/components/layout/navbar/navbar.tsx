@@ -7,6 +7,7 @@ import {
 	FaBusinessTime,
 	FaMoneyBillWave,
 } from 'react-icons/fa6'
+import { MdClose } from 'react-icons/md'
 
 export const NavbarLayout: React.FC<{
 	variant?: 'horizontal' | 'extended'
@@ -15,30 +16,39 @@ export const NavbarLayout: React.FC<{
 		{
 			label: 'Недвижимость',
 			variant: 'main',
-			customStyles: 'bg-blue-600',
-			icon: <FaBuilding />,
+			customStyles: {
+				default: 'bg-blue-600',
+				active: 'bg-white text-blue-600',
+			},
+			icon: {
+				default: <FaBuilding />,
+				active: <MdClose />,
+			},
 			type: 'dropdown',
 		},
 		{
 			label: 'Покупка',
 			type: 'dropdown',
-			// customStyles: 'bg-[#eb89ff5a]',
-			icon: <FaBasketShopping />,
+			icon: {
+				default: <FaBasketShopping />,
+			},
 			variant: variant == 'extended' ? 'main' : 'default',
 		},
 		{
 			label: 'Аренда',
 			type: 'dropdown',
-			// customStyles: 'bg-[#8bff895a]',
-			icon: <FaBusinessTime />,
+			icon: {
+				default: <FaBusinessTime />,
+			},
 			variant: variant == 'extended' ? 'main' : 'default',
 		},
 		{
 			label: 'Продажа',
 			type: 'link',
 			url: '/sale',
-			// customStyles: 'bg-[#ff9a895a]',
-			icon: <FaMoneyBillWave />,
+			icon: {
+				default: <FaMoneyBillWave />,
+			},
 			variant: variant == 'extended' ? 'main' : 'default',
 		},
 	]
