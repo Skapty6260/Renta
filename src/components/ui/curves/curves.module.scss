@@ -1,0 +1,21 @@
+.opacityCurve {
+	opacity: 100%;
+	transform: rotate(180deg);
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+	line-height: 0;
+}
+
+.opacityCurve svg {
+	position: relative;
+	display: block;
+	width: calc(100% + 1.3px);
+	height: 150px;
+}
+
+.opacityCurve .shapeFill {
+	fill: #ffffff;
+}

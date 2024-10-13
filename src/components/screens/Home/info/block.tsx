@@ -40,10 +40,11 @@ export const HomeInfoBlock: React.FC<IProps> = ({ image, variant, text }) => {
 		<div className='relative flex flex-col'>
 			<Image
 				src={image}
+				draggable={false}
 				alt={`homeInfoBlock_${text.title}`}
 				width={sizes.width[variant]}
 				height={sizes.height[variant]}
-				className={`rounded-3xl object-cover w-[${sizes.width[variant]}px] h-[200px]`}
+				className={`rounded-3xl object-cover w-[${sizes.width[variant]}px] h-[200px] cursor-pointer`}
 				style={{
 					filter: 'brightness(50%)',
 				}}

@@ -17,3 +17,13 @@
 		margin-right: 0;
 	}
 }
+
+.filter {
+	display: flex;
+	justify-content: space-between;
+
+	li {
+		display: flex;
+		flex-direction: column;
+	}
+}

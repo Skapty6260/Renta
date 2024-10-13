@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { NavbarItem } from './item'
 import { Dropdown_Extended } from '@/components/ui/dropdown/extended'
 

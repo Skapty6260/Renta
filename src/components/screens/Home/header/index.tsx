@@ -1,11 +1,49 @@
+'use client'
+import {
+	AnimatePresence,
+	motion,
+	useMotionValueEvent,
+	useScroll,
+} from 'framer-motion'
+import { useState } from 'react'
 import Image from 'next/image'
 import header from '@/assets/images/header01.jpeg'
 import { NavbarLayout } from '@/components/layout/navbar/navbar'
 import { SearchBar_Compact } from '@/components/ui/searchbar'
+import { CurveSplitter_Opacity } from '@/components/ui/curves/opacityCurve'
 
 export const HomeHeader = () => {
+	const animationDuration = 0.15
+	const { scrollY } = useScroll()
+
+	const [hidden, setHidden] = useState<boolean>(false)
+	const [bp, setBp] = useState<boolean>(false)
+
+	useMotionValueEvent(scrollY, 'change', latest => {
+		const previous = scrollY.getPrevious()
+		if (previous)
+			if (latest > previous) {
+				setTimeout(() => setBp(true), animationDuration * 1000)
+				setHidden(true)
+			} else {
+				setBp(false)
+				setHidden(false)
+			}
+	})
+
 	return (
-		<header className='relative h-[35vh] shadow-md shadow-[#000000be]'>
+		<motion.header
+			variants={{
+				hidden: {
+					y: '-100%',
+				},
+				visible: {
+					y: 0,
+				},
+			}}
+			animate={hidden ? 'hidden' : 'visible'}
+			className={`relative h-[${bp == true ? 0 : '40vh'}] pb-[10vh]`}
+		>
 			<NavbarLayout variant='extended' />
 			<Image
 				src={header}
@@ -23,6 +61,7 @@ export const HomeHeader = () => {
 			</div>
 
 			<SearchBar_Compact />
-		</header>
+			<CurveSplitter_Opacity />
+		</motion.header>
 	)
 }
