@@ -3,7 +3,7 @@ import styles from '../content.module.scss'
 export const ContentHeader_Filter = () => {
 	return (
 		<>
-			<div className='flex flex-col my-[5px]'>
+			<div className={styles.filterHeading}>
 				<span>Выберите тип жилья</span>
 				<button>Аренда</button>
 			</div>

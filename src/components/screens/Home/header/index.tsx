@@ -1,15 +1,9 @@
 'use client'
-import {
-	AnimatePresence,
-	motion,
-	useMotionValueEvent,
-	useScroll,
-} from 'framer-motion'
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { useState } from 'react'
 import Image from 'next/image'
 import header from '@/assets/images/header01.jpeg'
 import { NavbarLayout } from '@/components/layout/navbar/navbar'
-import { SearchBar_Compact } from '@/components/ui/searchbar'
 import { CurveSplitter_Opacity } from '@/components/ui/curves/opacityCurve'
 
 export const HomeHeader = () => {
@@ -42,7 +36,7 @@ export const HomeHeader = () => {
 				},
 			}}
 			animate={hidden ? 'hidden' : 'visible'}
-			className={`relative h-[${bp == true ? 0 : '40vh'}] pb-[10vh]`}
+			className={`relative h-[${bp == true ? 0 : '40vh'}] pb-[10vh] z-[1]`}
 		>
 			<NavbarLayout variant='extended' />
 			<Image
@@ -56,11 +50,13 @@ export const HomeHeader = () => {
 				draggable={false}
 			/>
 
-			<div className='absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-2/3 flex flex-col items-center text-white font-extrabold text-3xl'>
-				<h1>Appartments.Loans.Homes</h1>
+			<div className='absolute top-2/3 lg:top-[70%] left-1/2 -translate-x-1/2 -translate-y-2/3 flex flex-col items-center text-white font-extrabold text-3xl'>
+				<h1>
+					<b className='text-blue-500 lg:text-blue-600'>Appartments</b>
+					.Loans.Homes
+				</h1>
 			</div>
 
-			<SearchBar_Compact />
 			<CurveSplitter_Opacity />
 		</motion.header>
 	)

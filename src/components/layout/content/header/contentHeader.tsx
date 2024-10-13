@@ -1,3 +1,4 @@
+import { SearchBar_Input } from '@/components/ui/shared/search_input'
 import { ContentHeader_Filter } from './filter'
 
 interface IProps {
@@ -31,7 +32,13 @@ export const ContentHeader: React.FC<IProps> = ({ styles, location }) => {
 				</h1>
 			)}
 
-			<ContentHeader_Filter />
+			{location[0].toLowerCase() == 'главная' ? (
+				<div className='flex flex-col mt-3'>
+					<SearchBar_Input />
+				</div>
+			) : (
+				<ContentHeader_Filter />
+			)}
 		</header>
 	)
 }
