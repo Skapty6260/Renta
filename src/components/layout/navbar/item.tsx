@@ -70,32 +70,30 @@ export const NavbarItem: React.FC<{
 		status: boolean
 	}
 	isExtended: boolean
-}> = ({ item, index, ActivateDropdown, DropdownActive, isExtended }) => {
-	return (
-		<li
-			key={index}
-			className={
-				item.variant == 'main'
-					? `px-[15px] py-[3px] rounded-full transition-all duration-300 ${
-							item.customStyles &&
-							DropdownActive.dropdown == item.label &&
-							DropdownActive.status == true
-								? item.customStyles.active
-								: item.customStyles?.default
-					  }`
-					: ''
-			}
-		>
-			{item.type == 'link' ? (
-				<LinkItem item={item} />
-			) : (
-				<DropdownItem
-					item={item}
-					ActivateDropdown={ActivateDropdown}
-					DropdownActive={DropdownActive}
-					isExtended={isExtended}
-				/>
-			)}
-		</li>
-	)
-}
+}> = ({ item, index, ActivateDropdown, DropdownActive, isExtended }) => (
+	<li
+		key={index}
+		className={
+			item.variant == 'main'
+				? `px-[15px] py-[3px] rounded-full transition-all duration-300 ${
+						item.customStyles &&
+						DropdownActive.dropdown == item.label &&
+						DropdownActive.status == true
+							? item.customStyles.active
+							: item.customStyles?.default
+				  }`
+				: ''
+		}
+	>
+		{item.type == 'link' ? (
+			<LinkItem item={item} />
+		) : (
+			<DropdownItem
+				item={item}
+				ActivateDropdown={ActivateDropdown}
+				DropdownActive={DropdownActive}
+				isExtended={isExtended}
+			/>
+		)}
+	</li>
+)
