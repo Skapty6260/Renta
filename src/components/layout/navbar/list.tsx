@@ -12,6 +12,7 @@ export interface INavbarPartItem {
 		default: string
 		active?: string
 	}
+	noShrinkAffect?: boolean
 	icon?: {
 		default: React.ReactNode
 		active?: React.ReactNode
@@ -42,6 +43,7 @@ export const NavbarPart: React.FC<IProps> = ({
 					key={index}
 					item={item}
 					index={index}
+					isExtended={isExtended}
 					ActivateDropdown={setDropdownActive}
 					DropdownActive={dropdownActive}
 				/>

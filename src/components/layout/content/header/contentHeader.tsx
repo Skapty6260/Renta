@@ -1,5 +1,7 @@
-import { SearchBar_Input } from '@/components/ui/shared/search_input'
+'use client'
+import { SearchBar_Input } from '@/components/ui/search_input'
 import { ContentHeader_Filter } from './filter'
+import { useUiStore } from '@/store'
 
 interface IProps {
 	styles: any
@@ -7,8 +9,10 @@ interface IProps {
 }
 
 export const ContentHeader: React.FC<IProps> = ({ styles, location }) => {
+	const { navbar_variant } = useUiStore()
+
 	return (
-		<header>
+		<header className={`${navbar_variant == 'horizontal' ? 'pt-[200px]' : ''}`}>
 			{/* Location */}
 			{location[0].toLowerCase() !== 'главная' ? (
 				<>

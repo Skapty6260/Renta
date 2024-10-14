@@ -25,7 +25,8 @@ const DropdownItem: React.FC<{
 		dropdown: string
 		status: boolean
 	}
-}> = ({ item, ActivateDropdown, DropdownActive }) => {
+	isExtended: boolean
+}> = ({ item, ActivateDropdown, DropdownActive, isExtended }) => {
 	return (
 		<button
 			onClick={() =>
@@ -41,14 +42,15 @@ const DropdownItem: React.FC<{
 				})
 			}
 		>
-			{item.icon && (
+			{!item.icon ? null : isExtended == true || item.noShrinkAffect ? (
 				<i>
 					{DropdownActive.dropdown == item.label &&
 					DropdownActive.status == true
 						? item.icon?.active || item.icon.default
 						: item.icon.default}
 				</i>
-			)}
+			) : null}
+
 			<span>{item.label}</span>
 		</button>
 	)
@@ -67,7 +69,8 @@ export const NavbarItem: React.FC<{
 		dropdown: string
 		status: boolean
 	}
-}> = ({ item, index, ActivateDropdown, DropdownActive }) => {
+	isExtended: boolean
+}> = ({ item, index, ActivateDropdown, DropdownActive, isExtended }) => {
 	return (
 		<li
 			key={index}
@@ -90,6 +93,7 @@ export const NavbarItem: React.FC<{
 					item={item}
 					ActivateDropdown={ActivateDropdown}
 					DropdownActive={DropdownActive}
+					isExtended={isExtended}
 				/>
 			)}
 		</li>

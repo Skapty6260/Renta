@@ -5,7 +5,7 @@ export default function Home() {
 	return (
 		<>
 			<HomeHeader />
-			<ContentSection location={['Главная']} />
+			<ContentSection location={['Главная']} Filters={<div />} data={[]} />
 		</>
 	)
 }
