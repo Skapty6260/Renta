@@ -7,7 +7,7 @@ import { NavbarLayout } from '../navbar/navbar'
 interface IProps {
 	location: string[]
 	Filters: React.ReactNode
-	data: any
+	data: Promise<any>
 }
 
 const ContentSection: React.FC<IProps> = ({ location, Filters, data }) => {

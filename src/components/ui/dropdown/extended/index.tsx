@@ -15,9 +15,12 @@ export const Dropdown_Extended: React.FC<{
 					: styles.dropdown_container2
 			}
 		>
-			<nav
+			<div
 				onMouseLeave={() => setDropdownActive({ dropdown: '', status: false })}
-			></nav>
+				className={styles.content}
+			>
+				<nav></nav>
+			</div>
 
 			<aside></aside>
 		</div>

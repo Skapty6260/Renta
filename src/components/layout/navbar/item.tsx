@@ -2,12 +2,17 @@ import Link from 'next/link'
 import { INavbarPartItem } from './list'
 import { Dispatch, SetStateAction } from 'react'
 
-const LinkItem: React.FC<{ item: INavbarPartItem }> = ({ item }) => {
+const LinkItem: React.FC<{ item: INavbarPartItem; isExtended: boolean }> = ({
+	item,
+	isExtended,
+}) => {
 	if (!item.url) return null
 
 	return (
 		<Link href={item.url && item.url}>
-			{item.icon && <i>{item.icon.default}</i>}
+			{!item.icon ? null : isExtended == true || item.noShrinkAffect ? (
+				<i>{item.icon.default}</i>
+			) : null}
 			<span>{item.label}</span>
 		</Link>
 	)
@@ -35,7 +40,7 @@ const DropdownItem: React.FC<{
 					status: !DropdownActive.status,
 				})
 			}
-			onMouseOver={() =>
+			onMouseEnter={() =>
 				ActivateDropdown({
 					dropdown: item.label,
 					status: !DropdownActive.status,
@@ -86,7 +91,7 @@ export const NavbarItem: React.FC<{
 		}
 	>
 		{item.type == 'link' ? (
-			<LinkItem item={item} />
+			<LinkItem isExtended={isExtended} item={item} />
 		) : (
 			<DropdownItem
 				item={item}

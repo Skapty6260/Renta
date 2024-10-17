@@ -1,6 +1,7 @@
 'use client'
 import { useUiStore } from '@/store'
-import { INavbarPartItem, NavbarPart } from './list'
+import { NavbarPart } from './list'
+import { motion } from 'framer-motion'
 import styles from './navbar.module.scss'
 
 import navbarConfig from '@/config/navbar'
@@ -13,13 +14,17 @@ export const NavbarLayout: React.FC<{
 	const { firstList, lastList } = navbarConfig
 	navbarConfig.firstList[0].customStyles = {
 		default: `bg-blue-600 ${navbar_variant == 'horizontal' && 'text-white'}`,
-		active: 'bg-[#ebebeb] text-blue-600',
+		active: 'bg-[#fff] text-blue-600',
 	}
 
 	if (navbar_variant == 'extended' && variant == 'horizontal') return null
 
 	return (
-		<nav
+		<motion.nav
+			initial={{ y: '-100%' }}
+			animate={{ y: 0 }}
+			transition={{ duration: 0.3, ease: 'easeInOut' }}
+			exit={{ y: '-100%' }}
 			className={variant == 'extended' ? styles.navbarExtended : styles.navbar}
 		>
 			<NavbarPart
@@ -43,6 +48,6 @@ export const NavbarLayout: React.FC<{
 				isExtended={navbar_variant == 'extended'}
 				data={lastList}
 			/>
-		</nav>
+		</motion.nav>
 	)
 }

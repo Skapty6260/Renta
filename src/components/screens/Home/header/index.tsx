@@ -33,12 +33,6 @@ export const HomeHeader = () => {
 			}
 	})
 
-	// useEffect(() => {
-	// 	if (bp == true && navbar_variant !== 'horizontal')
-	// 		setNavbarVariant('horizontal')
-	// 	else if (navbar_variant !== 'extended') setNavbarVariant('extended')
-	// }, [bp])
-
 	return (
 		<>
 			{!bp && <NavbarLayout variant={navbar_variant} />}
@@ -52,6 +46,7 @@ export const HomeHeader = () => {
 						y: 0,
 					},
 				}}
+				// transition={{ duration: 0.3, ease: 'easeInOut' }}
 				animate={hidden ? 'hidden' : 'visible'}
 				className={`relative h-[${bp == true ? 0 : '40vh'}] ${
 					navbar_variant == 'horizontal' ? '' : 'pb-[35vh]'
@@ -69,12 +64,22 @@ export const HomeHeader = () => {
 				/>
 
 				{navbar_variant == 'extended' && (
-					<div className='absolute top-2/3 lg:top-[70%] left-1/2 -translate-x-1/2 -translate-y-2/3 flex flex-col items-center text-white font-extrabold text-3xl'>
+					<motion.div
+						animate={{ y: 0, opacity: 1 }}
+						initial={{
+							y: '100%',
+							left: '50%',
+							transform: 'translateX(-50%)',
+							opacity: 0,
+						}}
+						transition={{ duration: 0.2, ease: 'easeInOut', delay: 0.2 }}
+						className='absolute top-2/3 lg:top-[70%] -translate-y-2/3 flex flex-col items-center text-white font-extrabold text-3xl'
+					>
 						<h1>
 							<b className='text-blue-500 lg:text-blue-600'>Appartments</b>
 							.Loans.Homes
 						</h1>
-					</div>
+					</motion.div>
 				)}
 
 				<CurveSplitter_Opacity />

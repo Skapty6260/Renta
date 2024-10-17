@@ -49,17 +49,19 @@ export const NavbarPart: React.FC<IProps> = ({
 				/>
 			))}
 
-			{dropdownActive.status && isExtended ? (
-				<Dropdown_Extended
-					setDropdownActive={setDropdownActive}
-					variant='first'
-				/>
-			) : (
-				<Dropdown_Extended
-					setDropdownActive={setDropdownActive}
-					variant='second'
-				/>
-			)}
+			{dropdownActive.status ? (
+				isExtended ? (
+					<Dropdown_Extended
+						setDropdownActive={setDropdownActive}
+						variant='first'
+					/>
+				) : (
+					<Dropdown_Extended
+						setDropdownActive={setDropdownActive}
+						variant='second'
+					/>
+				)
+			) : null}
 		</ul>
 	)
 }

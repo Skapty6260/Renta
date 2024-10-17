@@ -8,7 +8,7 @@
 	height: 110vh;
 	background: #000000be;
 
-	nav {
+	.content {
 		position: absolute;
 		left: 225px;
 		top: 60px;
@@ -32,4 +32,33 @@
 }
 
 .dropdown_container2 {
+	display: flex;
+	position: fixed;
+	z-index: -1;
+	top: 70px;
+	left: -10px;
+	width: 110%;
+	height: calc(100vh - 70px);
+	background: #000000be;
+
+	.content {
+		position: absolute;
+		left: calc(180px + 10px);
+		background: #fff;
+		width: 30%;
+		height: 70%;
+		top: 20px;
+		border-radius: 20px;
+		padding: 1% 2.5%;
+		color: black;
+	}
+
+	aside {
+		left: calc(30% + 180px + 10px + 10px);
+		border-radius: 20px;
+		background: #000;
+		width: 30%;
+		height: 70%;
+		top: 20px;
+	}
 }
