@@ -54,7 +54,10 @@ export const PATCH = async (request: Request) => {
 
 		const user = await DataBase.User.findOneAndUpdate(
 			{ _id: body.userId },
-			body.newUser
+			body.newUser,
+			{
+				new: true,
+			}
 		)
 
 		if (!user) {

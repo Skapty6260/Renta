@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
 import '../assets/styles/globals.css'
-import { Footer } from '@/components/layout/footer'
 
 const Font = Nunito({ subsets: ['latin'] })
 
@@ -20,7 +19,6 @@ export default function RootLayout({
 			<body className={`${Font.className}`}>
 				<main className='min-h-screen w-full overflow-x-hidden'>
 					{children}
-					<Footer />
 				</main>
 			</body>
 		</html>
