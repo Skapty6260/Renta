@@ -5,15 +5,35 @@ import Config from '@/config/auth'
 import { LoginAside } from '@/components/screens/Login/aside'
 
 import styles from '../login.module.scss'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function SignIn() {
+	const { setAuthStatus, setUserName, setUserRole, auth_status } =
+		useAuthStore()
+	const router = useRouter()
+
+	useEffect(() => {
+		if (auth_status == true) router.push('/me')
+	}, [])
+
 	const onSubmit = async (username: string, password: string) => {
 		const params = await new URLSearchParams({
 			username: username,
 			password: password,
 		})
 		const data = await fetch(`/api/users?${params}`)
-		console.log(data)
+		const res = await data.json()
+
+		if (res.user) {
+			setUserName(res.user.username)
+			// setUserRole(res.user.role)
+
+			await setAuthStatus(true)
+			router.push('/me')
+		} else {
+			alert('Invalid username or password')
+		}
 	}
 
 	return (

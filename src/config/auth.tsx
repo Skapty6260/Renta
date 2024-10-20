@@ -13,16 +13,15 @@ const config = {
 	login: {
 		...shared,
 		fields: [
-			{ placeholder: 'Email', type: 'email' },
+			{ placeholder: 'Username', type: 'username' },
 			{ placeholder: 'Password', type: 'password' },
 		],
 	},
 	register: {
 		...shared,
 		fields: [
-			{ placeholder: 'Username' },
-			{ placeholder: 'Email' },
-			{ placeholder: 'Password' },
+			{ placeholder: 'Username', type: 'username' },
+			{ placeholder: 'Password', type: 'password' },
 		],
 	},
 }

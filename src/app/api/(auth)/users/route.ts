@@ -7,22 +7,25 @@ export const GET = async (request: Request) => {
 
 		if (request) {
 			const params = request.url.split('http://localhost:3000/api/users')
+			const body = params[1].split('&')
+			const username = body[0].split('=')[1]
+			const password = body[1].split('=')[1]
 
 			if (params.length == 2) {
 				const user = await DataBase.User.findOne({
-					username: params[1],
-					password: params[2],
+					username: username,
+					password: password,
 				})
 
 				if (!user)
 					return new NextResponse(
 						JSON.stringify({
-							message: 'user with that username and password not found.',
+							message: `user with that username and password not found.`,
 						}),
 						{ status: 404 }
 					)
 
-				return new NextResponse(JSON.stringify(user), { status: 200 })
+				return new NextResponse(JSON.stringify({ user: user }), { status: 200 })
 			}
 
 			return new NextResponse(
@@ -31,14 +34,14 @@ export const GET = async (request: Request) => {
 				),
 				{ status: 400 }
 			)
+		} else {
+			const users = await DataBase.User.find()
+
+			return new NextResponse(JSON.stringify(users), { status: 200 })
 		}
-
-		const users = await DataBase.User.find()
-
-		return new NextResponse(JSON.stringify(users), { status: 200 })
 	} catch (error: any) {
 		return new NextResponse(
-			JSON.stringify('Error in fetching users' + error.message),
+			JSON.stringify('Error in fetching user' + error.message),
 			{ status: 500 }
 		)
 	}
