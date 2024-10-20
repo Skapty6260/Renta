@@ -1,9 +1,38 @@
 import { DataBase } from '@/lib/db'
 import { NextResponse } from 'next/server'
 
-export const GET = async () => {
+export const GET = async (request: Request) => {
 	try {
 		await new DataBase().connect()
+
+		if (request) {
+			const params = request.url.split('http://localhost:3000/api/users')
+
+			if (params.length == 2) {
+				const user = await DataBase.User.findOne({
+					username: params[1],
+					password: params[2],
+				})
+
+				if (!user)
+					return new NextResponse(
+						JSON.stringify({
+							message: 'user with that username and password not found.',
+						}),
+						{ status: 404 }
+					)
+
+				return new NextResponse(JSON.stringify(user), { status: 200 })
+			}
+
+			return new NextResponse(
+				JSON.stringify(
+					`Invalid parameters. You should provide username and password ${params.length}`
+				),
+				{ status: 400 }
+			)
+		}
+
 		const users = await DataBase.User.find()
 
 		return new NextResponse(JSON.stringify(users), { status: 200 })

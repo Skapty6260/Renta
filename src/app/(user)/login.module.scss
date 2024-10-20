@@ -1,0 +1,39 @@
+.page {
+	display: flex;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	justify-content: space-between;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	flex: 1 0 1%;
+	// width: 50%;
+	justify-content: center;
+	align-items: center;
+
+	h2 {
+		font-size: 30px;
+		font-weight: 800;
+		margin: 0;
+	}
+
+	input {
+		width: 300px;
+		height: 40px;
+		margin: 10px 0;
+		padding: 0 20px;
+		border: none;
+		outline: none;
+		border-radius: 5px;
+		background: rgb(220, 218, 218);
+		transition: all 300ms ease-in-out;
+
+		&:focus {
+			border-radius: 15px;
+			transform: scaleY(1.1);
+		}
+	}
+}
