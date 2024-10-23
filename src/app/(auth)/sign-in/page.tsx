@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
 export default function SignIn() {
-	const { setAuthStatus, setUserName, setUserRole, auth_status } =
+	const { setAuthStatus, setUserName, setUserRole, setUserId, auth_status } =
 		useAuthStore()
 	const router = useRouter()
 
@@ -27,6 +27,7 @@ export default function SignIn() {
 
 		if (res.user) {
 			setUserName(res.user.username)
+			setUserId(res.user._id)
 			// setUserRole(res.user.role)
 
 			await setAuthStatus(true)

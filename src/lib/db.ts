@@ -1,5 +1,6 @@
 import mongoose, { Types } from 'mongoose'
 import User from './models/user'
+import Product from './models/product'
 
 const MONGO_URI = process.env.MONGODB_URI
 
@@ -11,6 +12,7 @@ if (!MONGO_URI) {
 
 export class DataBase {
 	static User = User
+	static Product = Product
 
 	constructor() {}
 

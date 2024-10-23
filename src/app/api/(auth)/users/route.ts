@@ -7,11 +7,47 @@ export const GET = async (request: Request) => {
 
 		if (request) {
 			const params = request.url.split('http://localhost:3000/api/users')
-			const body = params[1].split('&')
-			const username = body[0].split('=')[1]
-			const password = body[1].split('=')[1]
 
-			if (params.length == 2) {
+			if (params[1].length !== 0 && !params[1].includes('&')) {
+				const id = DataBase.validateId(params[1].split('=')[1] as any)
+
+				if (id == false) {
+					return new NextResponse(
+						JSON.stringify({
+							message: `Invalid id ${params[1].split('=')[1]}`,
+						}),
+						{
+							status: 400,
+						}
+					)
+				}
+
+				const user = await DataBase.User.findOne({
+					_id: params[1].split('=')[1],
+				})
+				if (!user)
+					return new NextResponse(
+						JSON.stringify({
+							message: `user with that username and password not found.`,
+						}),
+						{ status: 404 }
+					)
+
+				return new NextResponse(JSON.stringify({ user: user }), { status: 200 })
+			} else if (params[1].length !== 0 && params[1].includes('&')) {
+				const returnWith400 = () =>
+					new NextResponse(
+						JSON.stringify({
+							message: 'Error! Please provide username and password',
+						}),
+						{ status: 400 }
+					)
+
+				const body = params[1].split('&')
+				const username = body[0].split('=')[1]
+				const password = body[1].split('=')[1]
+				if (!username && !password) return returnWith400()
+
 				const user = await DataBase.User.findOne({
 					username: username,
 					password: password,
@@ -26,18 +62,18 @@ export const GET = async (request: Request) => {
 					)
 
 				return new NextResponse(JSON.stringify({ user: user }), { status: 200 })
+			} else {
+				const users = await DataBase.User.find()
+
+				return new NextResponse(JSON.stringify(users), { status: 200 })
 			}
 
 			return new NextResponse(
 				JSON.stringify(
-					`Invalid parameters. You should provide username and password ${params.length}`
+					`Invalid parameters. You should provide username and password as 2 arguments, or user id as 1 argument`
 				),
 				{ status: 400 }
 			)
-		} else {
-			const users = await DataBase.User.find()
-
-			return new NextResponse(JSON.stringify(users), { status: 200 })
 		}
 	} catch (error: any) {
 		return new NextResponse(

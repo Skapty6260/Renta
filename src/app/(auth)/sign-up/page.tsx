@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
 export default function SignUp() {
-	const { setAuthStatus, setUserName, setUserRole, auth_status } =
+	const { setAuthStatus, setUserName, setUserRole, setUserId, auth_status } =
 		useAuthStore()
 	const router = useRouter()
 
@@ -35,6 +35,7 @@ export default function SignUp() {
 			setTimeout(async () => {
 				await setAuthStatus(true)
 				await setUserName(data.user.username)
+				await setUserId(data.user._id)
 				await setUserRole('user')
 
 				router.push('/me')
