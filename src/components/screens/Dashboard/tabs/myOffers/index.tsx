@@ -4,6 +4,7 @@ import { Card_Product } from '@/components/ui/card/product'
 import { IProduct } from '@/interfaces/product.interface'
 import { useAuthStore } from '@/store'
 import { useEffect, useState } from 'react'
+import { LinkButton } from '@/components/ui/button'
 
 export const Dashboard_MyOffers = () => {
 	const { user_id } = useAuthStore()
@@ -35,12 +36,7 @@ export const Dashboard_MyOffers = () => {
 					</span>
 				</div>
 
-				<Link
-					href='/me/create-disposal'
-					className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:rounded-xl transition-all duration-200 ease-in-out'
-				>
-					Разместить
-				</Link>
+				<LinkButton href='/me/create-disposal' label='Разместить' />
 			</header>
 
 			<ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-[20px]'>

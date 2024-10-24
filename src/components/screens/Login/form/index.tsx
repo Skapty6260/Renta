@@ -100,6 +100,20 @@ export const LoginForm: React.FC<IProps> = ({
 			>
 				{type}
 			</button>
+
+			<div className='text-black opacity-60 cursor-pointer flex lg:hidden space-x-2 mt-[20px]'>
+				<p>
+					{type == 'sign-in'
+						? 'Don’t have an account?'
+						: 'Already have an account?'}
+				</p>
+				<Link
+					href={type == 'sign-in' ? '/sign-up' : '/sign-in'}
+					className='text-blue-600 underline'
+				>
+					{type == 'sign-in' ? 'Sign up' : 'Sign in'}
+				</Link>
+			</div>
 		</div>
 	)
 }

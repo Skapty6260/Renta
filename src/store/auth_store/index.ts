@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 type State = {
 	auth_status: boolean
@@ -19,13 +20,22 @@ type Action = {
 	value: unknown
 }
 
-export const useAuthStore = create<State & Actions>(set => ({
-	auth_status: false,
-	user_id: '',
-	user_role: '',
-	user_name: '',
-	setAuthStatus: status => set(state => ({ ...state, auth_status: status })),
-	setUserId: id => set(state => ({ ...state, user_id: id })),
-	setUserRole: role => set(state => ({ ...state, user_role: role })),
-	setUserName: name => set(state => ({ ...state, user_name: name })),
-}))
+export const useAuthStore = create<State & Actions>()(
+	persist(
+		set => ({
+			auth_status: false,
+			user_id: '',
+			user_role: '',
+			user_name: '',
+			setAuthStatus: status =>
+				set(state => ({ ...state, auth_status: status })),
+			setUserId: id => set(state => ({ ...state, user_id: id })),
+			setUserRole: role => set(state => ({ ...state, user_role: role })),
+			setUserName: name => set(state => ({ ...state, user_name: name })),
+		}),
+		{
+			name: 'auth',
+			storage: createJSONStorage(() => localStorage),
+		}
+	)
+)

@@ -4,7 +4,7 @@ export const ProductSchema = new Schema(
 	{
 		price: { type: Number, required: true },
 		description: { type: String, required: false },
-		image: { type: Array, required: true, default: [] },
+		image: { type: Array, required: false, default: [] },
 		rooms: { type: Number, required: true },
 		area: { type: Number, required: true },
 		location: { type: String, required: true },
