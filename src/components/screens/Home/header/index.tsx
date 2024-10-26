@@ -18,7 +18,7 @@ export const HomeHeader = () => {
 
 	useMotionValueEvent(scrollY, 'change', latest => {
 		const previous = scrollY.getPrevious()
-		console.log(latest, previous)
+
 		if (previous)
 			if (latest > previous) {
 				setTimeout(() => {
@@ -64,21 +64,18 @@ export const HomeHeader = () => {
 				/>
 
 				{navbar_variant == 'extended' && (
-					<motion.div
-						animate={{ y: 0, opacity: 1 }}
-						initial={{
-							y: '100%',
-							left: '50%',
-							transform: 'translateX(-50%)',
-							opacity: 0,
-						}}
-						transition={{ duration: 0.2, ease: 'easeInOut', delay: 0.2 }}
-						className='absolute top-2/3 lg:top-[70%] -translate-y-2/3 flex flex-col items-center text-white font-extrabold text-3xl'
-					>
-						<h1>
+					<motion.div className='absolute top-2/3 lg:top-[70%] z-[0] -translate-y-2/3 left-1/2 -translate-x-1/2 flex flex-col items-center text-white font-extrabold text-3xl'>
+						<motion.h1
+							animate={{ y: 0, opacity: '100%' }}
+							initial={{
+								y: '300%',
+								opacity: 0,
+							}}
+							transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.1 }}
+						>
 							<b className='text-blue-500 lg:text-blue-600'>Appartments</b>
 							.Loans.Homes
-						</h1>
+						</motion.h1>
 					</motion.div>
 				)}
 

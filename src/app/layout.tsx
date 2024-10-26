@@ -17,9 +17,7 @@ export default function RootLayout({
 	return (
 		<html lang='ru'>
 			<body className={`${Font.className}`}>
-				<main className='min-h-screen w-full overflow-x-hidden'>
-					{children}
-				</main>
+				<main className='h-full w-full overflow-x-hidden'>{children}</main>
 			</body>
 		</html>
 	)

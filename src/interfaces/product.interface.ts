@@ -1,8 +1,9 @@
 export interface IProduct {
+	_id: any
 	createdAt: Date
 	updatedAt: Date
 	price: number
-	images?: Array<string>
+	image?: Array<string>
 	description?: string
 	rooms: number // yes
 	area: number // yes

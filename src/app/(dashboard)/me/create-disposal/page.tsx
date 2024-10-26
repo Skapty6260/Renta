@@ -104,7 +104,7 @@ export default function CreateDisposal() {
 				rooms: rooms,
 				area: areaAsNumber,
 				description: description || '',
-				images: images || '',
+				image: images,
 			}),
 		})
 

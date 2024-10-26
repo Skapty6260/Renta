@@ -1,6 +1,6 @@
 export const Footer = () => (
 	<footer className='overflow-y-hidden relative h-[200px]'>
-		<div className='bg-[#e1d9d9] rounded-[100%] w-full px-[20px] flex justify-center h-[400px] py-[40px]'>
+		<div className='bg-[#3a75ff] rounded-[100%] w-full px-[20px] flex justify-center h-[400px] py-[40px]'>
 			<div className='hidden lg:flex font-bold text-3xl absolute left-[20%] top-[100px] items-center'>
 				RENTA <b className='text-sm'>@2024</b>
 			</div>
