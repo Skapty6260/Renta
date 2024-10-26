@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { CreateDisposalInput } from './inputs'
 import { it } from 'node:test'
+import { redirect } from 'next/navigation'
+import { useAuthStore } from '@/store'
 
 const List: React.FC<{
 	data: string[]
@@ -60,22 +62,93 @@ export default function CreateDisposal() {
 	const [price, setPrice] = useState<number>(0)
 	const [description, setDescription] = useState('')
 
+	const { user_id } = useAuthStore()
+
 	const confirmDisposal = async () => {
 		const options = {
 			// Item, condition, alert message
 			price: [price == 0, 'Укажите цену'],
 			location: [location.length == 0, 'Укажите локацию здания'],
+			images: [images.length == 0, 'Добавьте хотя бы одну фотографию'],
 		}
+
+		let validationCounter = 0
 
 		Object.keys(options).forEach((key: any) => {
 			// @ts-ignore
 			if (options[key][0]) {
 				// @ts-ignore
 				return alert(options[key][1])
-			}
+			} else validationCounter++
 		})
 
-		console.log(images, offer, type, rooms, area, location, price, description)
+		const areaAsNumber = area.split('+')[0]
+		const offerAsType = offer === 'Продажа' ? 'sale' : 'rent'
+		const typeAsType = {
+			Квартира: 'apartment',
+			Дом: 'house',
+			Комната: 'room',
+		}
+
+		if (validationCounter == 0)
+			return alert(
+				`Убедитесь, что правильно введены все обязательные данные. ${validationCounter}`
+			)
+		const res = await fetch('/api/products', {
+			method: 'POST',
+			body: JSON.stringify({
+				price: price,
+				location: location,
+				offer: offerAsType,
+				type: typeAsType[type],
+				rooms: rooms,
+				area: areaAsNumber,
+				description: description || '',
+				images: images || '',
+			}),
+		})
+
+		if (res.status == 200) {
+			setPrice(0)
+			setLocation('')
+			setOffer('Продажа')
+			setType('Квартира')
+			setRooms(1)
+			setArea('10+м2')
+			setDescription('')
+			setImages([])
+		} else return alert('Что-то пошло не так, попробуйте еще раз.')
+
+		const data = await res.json()
+
+		console.log(data.product)
+
+		if (data.error) return alert(data.error)
+		else {
+			// get user prev values
+			const params = new URLSearchParams({
+				_id: user_id,
+			})
+
+			const userRes = await fetch(`/api/users?${params}`)
+			if (userRes.status !== 200)
+				return alert('Что-то пошло не так, попробуйте еще раз.')
+
+			const userData = await userRes.json()
+
+			await fetch('/api/users', {
+				method: 'PATCH',
+				body: JSON.stringify({
+					userId: user_id,
+					newUser: {
+						disposals: [data.product, ...userData.user.disposals],
+					},
+				}),
+			})
+
+			validationCounter = 0
+			alert('Объявление размещено')
+		}
 	}
 
 	return (

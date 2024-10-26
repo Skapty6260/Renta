@@ -7,6 +7,6 @@ export interface IProduct {
 	rooms: number // yes
 	area: number // yes
 	location: string
-	type: 'Appartment' | 'Home' | 'Room' // yres
+	type: 'Apartment' | 'Home' | 'Room' // yres
 	offer: 'sale' | 'rent' // yes
 }

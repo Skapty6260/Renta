@@ -145,3 +145,40 @@ export const PATCH = async (request: Request) => {
 		})
 	}
 }
+
+export const DELETE = async (request: Request) => {
+	try {
+		const body = await request.json()
+		await new DataBase().connect()
+
+		if (!body.userId) {
+			return new NextResponse(
+				"Invalid request body. Please provide 'userId' property.",
+				{ status: 400 }
+			)
+		}
+
+		if (!DataBase.validateId(body.userId)) {
+			return new NextResponse(JSON.stringify({ message: 'Invalid userId' }), {
+				status: 400,
+			})
+		}
+
+		const user = await DataBase.User.findOneAndDelete({ _id: body.userId })
+
+		if (!user) {
+			return new NextResponse(JSON.stringify({ message: 'User not found' }), {
+				status: 404,
+			})
+		}
+
+		return new NextResponse(
+			JSON.stringify({ message: 'User deleted', user: user }),
+			{ status: 200 }
+		)
+	} catch (error: any) {
+		return new NextResponse('Error deleting a user: ' + error.message, {
+			status: 500,
+		})
+	}
+}

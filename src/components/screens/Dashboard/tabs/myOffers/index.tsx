@@ -18,7 +18,7 @@ export const Dashboard_MyOffers = () => {
 		const res = await fetch(`/api/users?${params}`)
 		const user = await res.json()
 
-		setDisposals(user?.disposals || [])
+		setDisposals(user.user?.disposals || [])
 	}
 
 	useEffect(() => {
