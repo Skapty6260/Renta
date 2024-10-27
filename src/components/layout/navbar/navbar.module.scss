@@ -2,8 +2,8 @@
 	position: absolute;
 	top: 0;
 	z-index: 100;
-	width: 100vw;
 	display: flex;
+	width: 100vw;
 	justify-content: space-between;
 	font-size: 16px;
 	padding: 10px 30px;
@@ -22,9 +22,9 @@
 	}
 
 	ul {
+		@apply hidden md:flex;
 		list-style: none;
 		margin-top: 50px;
-		display: flex;
 
 		button,
 		a {
@@ -63,6 +63,7 @@
 
 // Horizontal
 .navbar {
+	@apply lg:bg-[#f5f3f3];
 	position: fixed;
 	top: 0;
 	z-index: 100;
@@ -74,7 +75,6 @@
 	inset: 0;
 	font-size: 16px;
 	padding: 10px 180px;
-	background: #f5f3f3;
 
 	ul:not(.firstList) {
 		@apply space-x-3;
@@ -88,9 +88,9 @@
 	}
 
 	ul {
+		@apply hidden lg:flex;
 		font-weight: 600;
 		@apply space-x-0;
-		display: flex;
 
 		li {
 			display: flex;
@@ -115,6 +115,7 @@
 }
 
 .logo {
+	@apply hidden lg:flex;
 	position: absolute;
 	left: 50%;
 	top: -15px;

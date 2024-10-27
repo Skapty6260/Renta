@@ -12,7 +12,11 @@ export const ContentHeader: React.FC<IProps> = ({ styles, location }) => {
 	const { navbar_variant } = useUiStore()
 
 	return (
-		<header className={`${navbar_variant == 'horizontal' ? 'pt-[200px]' : ''}`}>
+		<header
+			className={`${
+				navbar_variant == 'horizontal' ? 'pt-[200px]' : ''
+			} px-[0px]`}
+		>
 			{/* Location */}
 			{location[0].toLowerCase() !== 'главная' ? (
 				<>
@@ -29,7 +33,7 @@ export const ContentHeader: React.FC<IProps> = ({ styles, location }) => {
 					<h1>{location[location.length - 1]}</h1>
 				</>
 			) : (
-				<h1 className='font-bold text-3xl'>
+				<h1 className='font-bold text-3xl flex flex-col md:flex-row'>
 					Вся недвижимость{' '}
 					<span className='text-blue-500'>в Санкт-Петербурге</span>
 					{/* Create component to choose location */}

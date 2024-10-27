@@ -38,8 +38,8 @@ export const Card_Product: React.FC<IProps> = ({ item, index }) => {
 
 			<div
 				className={`absolute ${
-					!hovered && 'curveTriangular -bottom-[6%]'
-				} bottom-0 w-[380%] h-[110%] bg-[#00000095] backdrop-blur-lg`}
+					!hovered && 'curveTriangular -bottom-[7%]'
+				} bottom-0 w-[380%] h-[130%] bg-[#00000095] backdrop-blur-lg`}
 			/>
 
 			{hovered ? (
@@ -56,7 +56,7 @@ export const Card_Product: React.FC<IProps> = ({ item, index }) => {
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ duration: 0.4, ease: 'easeInOut' }}
-					className='absolute right-10 bottom-5 flex flex-col'
+					className='absolute right-10 bottom-[40px] flex flex-col'
 				>
 					<Link href={`/products/${item._id}`}>
 						<h5 className='mb-2 text-2xl text-white font-bold tracking-tight'>

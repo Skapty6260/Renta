@@ -49,7 +49,7 @@ export const HomeHeader = () => {
 				// transition={{ duration: 0.3, ease: 'easeInOut' }}
 				animate={hidden ? 'hidden' : 'visible'}
 				className={`relative h-[${bp == true ? 0 : '40vh'}] ${
-					navbar_variant == 'horizontal' ? '' : 'pb-[35vh]'
+					navbar_variant == 'horizontal' ? '' : 'pb-[25vh] md:pb-[35vh]'
 				} z-[1]`}
 			>
 				<Image
@@ -64,7 +64,7 @@ export const HomeHeader = () => {
 				/>
 
 				{navbar_variant == 'extended' && (
-					<motion.div className='absolute top-2/3 lg:top-[70%] z-[0] -translate-y-2/3 left-1/2 -translate-x-1/2 flex flex-col items-center text-white font-extrabold text-3xl'>
+					<motion.div className='hidden absolute top-2/3 lg:top-[70%] z-[0] -translate-y-2/3 left-1/2 -translate-x-1/2 md:flex flex-col items-center text-white font-extrabold text-2xl lg:text-5xl'>
 						<motion.h1
 							animate={{ y: 0, opacity: '100%' }}
 							initial={{
@@ -73,7 +73,7 @@ export const HomeHeader = () => {
 							}}
 							transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.1 }}
 						>
-							<b className='text-blue-500 lg:text-blue-600'>Appartments</b>
+							<b className='text-blue-300 lg:text-blue-300'>Appartments</b>
 							.Loans.Homes
 						</motion.h1>
 					</motion.div>

@@ -12,7 +12,7 @@ export const Modal: React.FC<IModalProps> = ({
 }) => {
 	return (
 		<dialog
-			onClick={() => disableOnClick && setActive && setActive(false)}
+			onClick={disableOnClick && setActive && setActive(false)}
 			className='absolute flex bg-[#000000ab] w-full h-full z-[10] top-0 left-0'
 		>
 			{children}

@@ -13,7 +13,7 @@ const ContentSection: React.FC<IProps> = ({ location, Filters }) => {
 	const isHome = location[0].toLowerCase() == 'главная'
 
 	return (
-		<main className='flex mb-[180px] flex-col relative w-full pt-[100px]'>
+		<main className='flex mb-[180px] flex-col relative w-full pt-[20px] md:pt-[80px]'>
 			<NavbarLayout variant='horizontal' />
 
 			<section
